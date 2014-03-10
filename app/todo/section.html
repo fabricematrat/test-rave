@@ -1,0 +1,22 @@
+<section data-path="todos" class="todos-section">
+    <header class="topcoat-navigation-bar">
+        <div class="topcoat-navigation-bar__item center full">
+            <h1 class="topcoat-navigation-bar__title">My Todos</h1>
+        </div>
+    </header>
+
+    <footer class="topcoat-tab-bar full bottom">
+        <div class="topcoat-tab-bar__item todos-list">
+            <button class="topcoat-button full" data-on-click="todos@controller.display">Add</button>
+        </div>
+        <div class="topcoat-tab-bar__item todos-element hidden ">
+            <button class="topcoat-button full" data-on-click="todos@controller.cancel">Cancel</button>
+        </div>
+        <div class="topcoat-tab-bar__item todos-element hidden ">
+            <button class="topcoat-button full" data-on-click="todos@controller.delete">Delete</button>
+        </div>
+        <div class="topcoat-tab-bar__item todos-element hidden">
+            <button class="topcoat-button full" data-on-click="todos@controller.save">Save</button>
+        </div>
+    </footer>
+</section>
