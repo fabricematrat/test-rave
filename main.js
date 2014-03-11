@@ -1,3 +1,4 @@
+require('when/monitor/console');
 var Rest = require('./js/mk/data/aerogear/AeroGearPipeline');
 var fluent = require('wire/config/fluent');
 var url = 'http://localhost:8080/mytodo/';
@@ -14,19 +15,20 @@ module.exports = fluent(function(config) {
 		.add('controller@controller', Controller)
 		.add('todos@controller', TodosController)
         .add('todos@model', function() {
-            return new Rest(url, 'todos');
+			return [{ description: 'hi', complete: true }];
+//            return new Rest(url, 'todos');
         })
-		.add('todos@view', ['render','insert','qs'], function(render, insert, qs) {
+		.add('@view', ['render','insert','qs'], function(render, insert, qs) {
 			var view = render(TodosSectionTemplate);
 			insert(view, qs('.controller-section'), 'after');
 			return view;
 		})
-		.add('todos@view', ['render','insert','qs'], function(render, insert, qs) {
+		.add('todos@view', ['render','insert','qs', '@view'], function(render, insert, qs) {
 			var view = render(TodosListTemplate);
 			insert(view, qs('section.todos-section header'), 'after');
 			return view;
 		})
-		.add('todos@view', ['render','insert','qs'], function(render, insert, qs) {
+		.add('@view', ['render','insert','qs'], function(render, insert, qs) {
 			var view = render(TodosEditTemplate);
 			insert(view, qs('section.todos-section footer'), 'before');
 			return view;
